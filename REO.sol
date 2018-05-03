@@ -33,7 +33,7 @@ contract REOToken is IERC223, Ownable{
         name = "REO Token";                                                         // Name of Token
         symbol = "REO";                                                             // Identifier of Token
         startTime = 1525471200;                                                     // Start time: May 05 0:00:00 AM GMT+2
-        stopTime = 1530395999;                                                      // Stop time: June 30 11:59:59 PM GMT+2
+        stopTime = 1533333599;                                                      // Stop time: June 30 11:59:59 PM GMT+2
         balances[fundsWallet] = totalSupply;                                        // The first supplied token be owned by fundsWallet
     }
 
@@ -50,20 +50,20 @@ contract REOToken is IERC223, Ownable{
     // rate for crowdsale
     // use in fallback function
     function currentRate() private view returns (uint){
-        // from May 05 0:00:00AM GMT+2 to May 11 23:59:59PM GMT+2 in Unix time
-        if (now >= startTime && now < startTime + 7 days)
+        // from May 05 0:00:00AM GMT+2 to May 18 23:59:59PM GMT+2 in Unix time
+        if (now >= startTime && now < startTime + 14 days)
             return 125000;
-        // from May 12 0:00:00AM GMT+2 to May 24 23:59:59PM GMT+2 in Unix time
-        else if (now >= startTime + 7 days && now < startTime + 21 days)
+        // from May 19 0:00:00AM GMT+2 to June 08 23:59:59PM GMT+2 in Unix time
+        else if (now >= startTime + 14 days && now < startTime + 35 days)
             return 90909;
-        // from May 25 0:00:00AM GMT+2 to June 08 23:59:59PM GMT+2 in Unix time
-        else if (now >= startTime + 21 days && now < startTime + 35 days)
+        // from June 09 0:00:00AM GMT+2 to June 29 23:59:59PM GMT+2 in Unix time
+        else if (now >= startTime + 35 days && now < startTime + 56 days)
             return 71429;
-        // from June 09 0:00:00AM GMT+2 to June 22 23:59:59PM GMT+2 in Unix time
-        else if (now >= startTime + 35 days && now < startTime + 49 days)
+        // from June 30 0:00:00AM GMT+2 to July 20 23:59:59PM GMT+2 in Unix time
+        else if (now >= startTime + 56 days && now < startTime + 77 days)
             return 58824;
-        // from June 23 0:00:00AM GMT+2 to June 30 23:59:59PM GMT+2 in Unix time
-        else if (now >= startTime + 49 days && now <= stopTime)
+        // from July 21 0:00:00AM GMT+2 to August 04 23:59:59PM GMT+2 in Unix time
+        else if (now >= startTime + 77 days && now <= stopTime)
             return 50000;
         else
             return 0;
@@ -101,7 +101,7 @@ contract REOToken is IERC223, Ownable{
     function getRate() public view returns (uint256) { return currentRate(); }
     // get all rate in crowdsale time
     function getAllRates() public pure returns (string) {
-        return "{1525471200:125000,1526076000:90909,1527285600:71429,1528495200:58824,1529704800:50000}";
+        return "{1525471200:125000,1526680800:90909,1528495200:71429,1530309600:58824,1532124000:50000}";
     }
     // get fund raised, ether in contract
     function fundRaised() public view onlyOwner returns (uint256) {
